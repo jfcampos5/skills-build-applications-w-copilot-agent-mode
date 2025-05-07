@@ -1,7 +1,7 @@
 from djongo import models
 
 class User(models.Model):
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=100)
     password = models.CharField(max_length=128)
@@ -9,14 +9,14 @@ class User(models.Model):
         db_table = 'users'
 
 class Team(models.Model):
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True)
     name = models.CharField(max_length=100)
     members = models.JSONField(default=list)  # lista de e-mails dos membros
     class Meta:
         db_table = 'teams'
 
 class Activity(models.Model):
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True)
     user = models.CharField(max_length=100)
     activity_type = models.CharField(max_length=50)
     duration = models.IntegerField()
@@ -25,14 +25,14 @@ class Activity(models.Model):
         db_table = 'activity'
 
 class Leaderboard(models.Model):
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True)
     user = models.CharField(max_length=100)
     points = models.IntegerField()
     class Meta:
         db_table = 'leaderboard'
 
 class Workout(models.Model):
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True)
     user = models.CharField(max_length=100)
     workout_type = models.CharField(max_length=50)
     details = models.TextField()
